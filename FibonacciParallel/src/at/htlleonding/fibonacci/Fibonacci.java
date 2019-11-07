@@ -25,7 +25,7 @@ package at.htlleonding.fibonacci;
 
 /**
  *
- * @author P. Bauer <p.bauer@htl-leonding.ac.at>
+ * @author Vinzent Kronreif 3AHIF
  */
 class Fibonacci {
 
@@ -37,7 +37,19 @@ class Fibonacci {
     }
 
     static int getNumberParallel(int n) {
-        return -1;
+        Thread t1 = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                number++;
+            }
+        });
+        if(n < 2){
+            t1.start();
+        }
+        else{
+            return getNumberParallel(n-1) + getNumberParallel(n-2);
+        }
+        return 1;
     }
-    
 }
